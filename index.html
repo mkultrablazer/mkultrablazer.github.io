@@ -7,7 +7,7 @@
 <style>
   /* Basic Reset */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Arial', sans-serif; }
+  body { font-family: 'Arial', sans-serif; overflow-x: hidden; }
 
   /* Dreamy Navigation Bar */
   .navbar { 
@@ -15,7 +15,7 @@
     justify-content: space-around; 
     align-items: center; 
     padding: 10px; 
-    background: rgba(255, 255, 255, 0.1); 
+    background: linear-gradient(135deg, rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.5)); 
     backdrop-filter: blur(10px); 
     position: fixed; 
     width: 100%; 
@@ -45,9 +45,13 @@
     border-radius: 15px; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
     transition: transform 0.3s ease; 
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(5px); 
+    padding: 20px; 
+    color: #fff; 
   }
   .project-card:hover { 
-    transform: scale(1.05); 
+    transform: scale(1.05) rotate(-5deg); 
   }
 
   /* Ethereal Backgrounds */
@@ -57,15 +61,24 @@
     left: 0; 
     width: 100%; 
     height: 100%; 
-    background-image: url('https://i.pinimg.com/736x/94/8d/65/948d65c0f6a24e75528e4c25a03a3421.jpg'); 
+    background-image: url('your-ethereal-image.jpg'); 
     background-size: cover; 
     background-attachment: fixed; 
+    background-position: center; 
+  }
+
+  /* Parallax Effect */
+  .parallax { 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
   }
 
   /* About Section */
   .about { 
     position: relative; 
-    background: url('https://cdn.openart.ai/stable_diffusion/90a3b7830272ff087eb67fe2c6f8c24680e84ff8_2000x2000.webp') no-repeat center center fixed; 
+    background: url('your-ethereal-about-image.jpg') no-repeat center center fixed; 
     background-size: cover; 
     padding: 100px; 
     color: #fff; 
@@ -73,6 +86,9 @@
   .about-content { 
     position: relative; 
     z-index: 10; 
+    backdrop-filter: blur(5px); 
+    padding: 20px; 
+    border-radius: 15px; 
   }
 
   /* Contact Form */
@@ -92,10 +108,31 @@
     border: none; 
     border-bottom: 2px solid transparent; 
     transition: border-color 0.3s ease; 
+    background: transparent; 
+    color: #fff; 
   }
   .contact-input:focus { 
     outline: none; 
     border-color: #0ff; 
+  }
+
+  /* Floating Action Button */
+  .fab { 
+    position: fixed; 
+    right: 20px; 
+    bottom: 20px; 
+    padding: 15px; 
+    background: #f0f; 
+    border-radius: 50%; 
+    box-shadow: 0 0 10px #f0f; 
+    color: #fff; 
+    text-align: center; 
+    font-size: 24px; 
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
+  }
+  .fab:hover { 
+    transform: scale(1.2); 
   }
 
   /* Footer */
@@ -131,10 +168,10 @@
 </div>
 
 <!-- Ethereal Background -->
-<div class="ethereal-bg"></div>
+<div class="ethereal-bg parallax"></div>
 
 <!-- About Section -->
-<div id="about" class="about">
+<div id="about" class="about parallax">
   <div class="about-content">
     <!-- Add bio and photo here -->
     Me
@@ -145,6 +182,9 @@
 <div id="contact" class="contact-form">
   <!-- Add form fields here -->
 </div>
+
+<!-- Floating Action Button -->
+<div class="fab">+</div>
 
 <!-- Footer -->
 <div class="footer">
