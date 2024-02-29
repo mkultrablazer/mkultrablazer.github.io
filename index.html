@@ -1,195 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Projects</title>
-<style>
-  /* Basic Reset */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Arial', sans-serif; overflow-x: hidden; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dreamcore Showcase</title>
+    <!-- Link to the Synthwave font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Synthwave">
+    <!-- Link to the favicon and logo images -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="logo" href="logo.png">
+    <!-- Define the style for the webpage using CSS -->
+    <style>
+        /* Use the Synthwave font for the whole webpage */
+        * {
+            font-family: 'Synthwave', sans-serif;
+        }
 
-  /* Dreamy Navigation Bar */
-  .navbar { 
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center; 
-    padding: 10px; 
-    background: linear-gradient(135deg, rgba(255, 0, 255, 0.5), rgba(0, 255, 255, 0.5)); 
-    backdrop-filter: blur(10px); 
-    position: fixed; 
-    width: 100%; 
-    top: 0; 
-    z-index: 1000; 
-  }
-  .nav-link { 
-    text-decoration: none; 
-    color: #fff; 
-    font-weight: bold; 
-    transition: color 0.3s ease; 
-  }
-  .nav-link:hover { 
-    color: #f0f; 
-    text-shadow: 0 0 10px #f0f; 
-  }
+        /* Define the colors for the animated gradient effect */
+        :root {
+            --color1: #ff00cc;
+            --color2: #3333ff;
+            --color3: #00ff66;
+            --color4: #ffff00;
+        }
 
-  /* Interactive Project Previews */
-  .project-carousel { 
-    display: flex; 
-    overflow-x: auto; 
-    padding: 50px; 
-    gap: 30px; 
-  }
-  .project-card { 
-    min-width: 300px; 
-    border-radius: 15px; 
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.3s ease; 
-    background: rgba(255, 255, 255, 0.1); 
-    backdrop-filter: blur(5px); 
-    padding: 20px; 
-    color: #fff; 
-  }
-  .project-card:hover { 
-    transform: scale(1.05) rotate(-5deg); 
-  }
+        /* Define the keyframes for the animated gradient effect */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-  /* Ethereal Backgrounds */
-  .ethereal-bg { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-image: url('your-ethereal-image.jpg'); 
-    background-size: cover; 
-    background-attachment: fixed; 
-    background-position: center; 
-  }
+        /* Define the keyframes for the glitch effect */
+        @keyframes glitch {
+            0% {
+                clip-path: inset(0 0 0 0);
+            }
+            10% {
+                clip-path: inset(0 0 0 0);
+            }
+            11% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(-5px, 5px);
+            }
+            12% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(5px, -5px);
+            }
+            13% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(-5px, 5px);
+            }
+            14% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(5px, -5px);
+            }
+            15% {
+                clip-path: inset(0 0 0 0);
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
 
-  /* Parallax Effect */
-  .parallax { 
-    background-attachment: fixed; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover; 
-  }
+        /* Define the style for the header element */
+        header {
+            /* Make the header fixed at the top of the webpage */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            /* Make the header transparent */
+            background: transparent;
+            /* Add some margin and padding */
+            margin: 20px;
+            padding: 10px;
+            /* Use flexbox to align the items */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Use the parallax effect */
+            background-attachment: fixed;
+        }
 
-  /* About Section */
-  .about { 
-    position: relative; 
-    background: url('your-ethereal-about-image.jpg') no-repeat center center fixed; 
-    background-size: cover; 
-    padding: 100px; 
-    color: #fff; 
-  }
-  .about-content { 
-    position: relative; 
-    z-index: 10; 
-    backdrop-filter: blur(5px); 
-    padding: 20px; 
-    border-radius: 15px; 
-  }
+        /* Define the style for the title element */
+        h1 {
+            /* Center the title */
+            text-align: center;
+            /* Make the title white */
+            color: white;
+            /* Add some glow effect */
+            text-shadow: 0 0 10px white;
+            /* Add some animated gradient effect */
+            background: linear-gradient(45deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 5s ease-in-out infinite;
+        }
 
-  /* Contact Form */
-  .contact-form { 
-    padding: 50px; 
-    background: rgba(255, 255, 255, 0.1); 
-    backdrop-filter: blur(10px); 
-    border-radius: 15px; 
-    margin: 50px auto; 
-    width: 50%; 
-  }
-  .contact-input { 
-    display: block; 
-    width: 100%; 
-    padding: 10px; 
-    margin-bottom: 20px; 
-    border: none; 
-    border-bottom: 2px solid transparent; 
-    transition: border-color 0.3s ease; 
-    background: transparent; 
-    color: #fff; 
-  }
-  .contact-input:focus { 
-    outline: none; 
-    border-color: #0ff; 
-  }
+        /* Define the style for the owner element */
+        h2 {
+            /* Center the owner */
+            text-align: center;
+            /* Make the owner white */
+            color: white;
+            /* Add some glow effect */
+            text-shadow: 0 0 10px white;
+            /* Add some animated gradient effect */
+            background: linear-gradient(45deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 5s ease-in-out infinite;
+        }
 
-  /* Floating Action Button */
-  .fab { 
-    position: fixed; 
-    right: 20px; 
-    bottom: 20px; 
-    padding: 15px; 
-    background: #f0f; 
-    border-radius: 50%; 
-    box-shadow: 0 0 10px #f0f; 
-    color: #fff; 
-    text-align: center; 
-    font-size: 24px; 
-    cursor: pointer; 
-    transition: transform 0.3s ease; 
-  }
-  .fab:hover { 
-    transform: scale(1.2); 
-  }
+        /* Define the style for the avatar element */
+        img {
+            /* Center the avatar */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /* Make the avatar rounded */
+            border-radius: 50%;
+            /* Add some shadow effect */
+            box-shadow: 0 0 10px black;
+            /* Define the width and height of the avatar */
+            width: 200px;
+            height: 200px;
+        }
 
-  /* Footer */
-  .footer { 
-    padding: 20px; 
-    text-align: center; 
-    color: #fff; 
-    background: rgba(0, 0, 0, 0.5); 
-  }
-  .social-icon { 
-    margin: 0 10px; 
-    transition: transform 0.3s ease; 
-  }
-  .social-icon:hover { 
-    transform: translateY(-5px); 
-  }
-</style>
+        /* Define the style for the avatar element when hovered */
+        img:hover {
+            /* Add some zoom effect */
+            transform: scale(1.1);
+        }
+
+        /* Define the style for the navigation bar element */
+        nav {
+            /* Use flexbox to align the items */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Define the style for the list element */
+        ul {
+            /* Make the list horizontal */
+            display: flex;
+            /* Add some margin and padding */
+            margin: 20px;
+            padding: 10px;
+        }
+
+        /* Define the style for the list item element */
+        li {
+            /* Make the list item flexible in width */
+            flex: 1;
+            /* Make the list item white */
+            color: white;
+            /* Add some margin and padding */
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* Define the style for the link element */
+        a {
+            /* Make the link white */
+            color: white;
+            /* Remove the default underline */
+            text-decoration: none;
+        }
+
+        /* Define the style for the link element when hovered */
+        a:hover {
+            /* Change the link color to black */
+            color: black;
+            /* Add some underline effect */
+            text-decoration: underline;
+            /* Add some animated gradient effect */
+            background: linear-gradient(45deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 5s ease-in-out infinite;
+        }
+
+        /* Define the style for the main section element */
+        main {
+            /* Define the width and height of the main section */
+            width: 100%;
+            height: 100%;
+            /* Add some margin and padding */
+            margin: 20px;
+            padding: 10px;
+        }
+
+        /* Define the style for the introduction element */
+        p {
+            /* Center the introduction */
+            text-align: center;
+            /* Make the introduction black */
+            color: black;
+            /* Add some margin and padding */
+            margin: 20px;
+            padding: 10px;
+            /* Add some fade-in, slide-in, and zoom-in animations */
+            opacity: 0;
+            transform: translateX(-100px) scale(0.5);
+            transition: opacity 1s, transform 1s;
+        }
+
+        /* Define the style for the introduction element when visible */
+        p.visible {
+            /* Make the introduction visible and in place */
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        /* Define the style for the background video element */
+        video {
+            /* Make the video cover the whole webpage */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Make the video play automatically, loop, and muted */
+            autoplay: true;
+            loop: true;
+            muted: true;
+            /* Make the video behind the other elements */
+            z-index: -1;
+            /* Add some glitch and animated gradient effects */
+            clip-path: inset(0 0 0 0);
+            animation: glitch 1s infinite, gradient 5s ease-in-out infinite;
+            background: linear-gradient(45deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Define the style for the panel element */
+        div {
+            /* Make the panel floating */
+            position: absolute;
+            /* Center the panel */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Make the panel semi-transparent white with a thin black border */
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid black;
+            /* Make the panel have soft corners and shadow */
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            /* Define the width and height of the panel */
+            width: 80%;
+            height: auto;
+            /* Make the panel above the other elements */
+            z-index: 1;
+            /* Add some fade-in, slide-in, and zoom-in animations */
+            opacity: 0;
+            transform: translate(-50%,-50%) scale(0.5);
+            transition: opacity 1s, transform 1s;
+        }
+
+        /* Define the style for the panel element when visible */
+        div.visible {
+            /* Make the panel visible and in place */
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Define the style for the footer element */
+        footer {
+            /* Make the footer solid black */
+            background: black;
+            /* Make the footer fixed at the bottom of the webpage */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* Define the style for the social media links element */
+        .social {
+            /* Center the social media links */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Define the style for the social media icons element */
+        .social img {
+            /* Define the width and height of the icons */
+            width: 50px;
+            height: 50px;
+            /* Add some margin */
+            margin: 10px;
+            /* Add some neon effect */
+            filter: drop-shadow(0 0 10px white);
+            /* Add some animated gradient effect */
+            background: linear-gradient(45deg, var(--color1), var(--color2), var(--color3), var(--color4));
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 5s ease-in-out infinite;
+        }
+
+        /* Define the style for the social media icons element when hovered */
+        .social img:hover {
+            /* Add some glow effect */
+            filter: drop-shadow(0 0 20px white);
+        }
+
+        /* Define the style for the disclaimer element */
+        .disclaimer {
+            /* Center the disclaimer */
+            text-align: center;
+            /* Make the disclaimer white */
+            color: white;
+            /* Add some margin and padding */
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* Define the style for the hamburger menu element */
+        .hamburger {
+            /* Make the hamburger menu visible only on small screens */
+            display: none;
+        }
+
+        /* Define the style for the hamburger menu element when clicked */
+        .hamburger.active {
+            /* Change the hamburger menu icon to an X icon */
+            background-image: url("x.png");
+        }
+
+        /* Define the media query for small screens */
+        @media (max-width: 768px) {
+            /* Hide the navigation bar on small screens */
+            nav {
+                display: none;
+            }
+
+            /* Show the hamburger menu on small screens */
+            .hamburger {
+                display: block;
+                /* Make the hamburger menu white */
+                color: white;
+                /* Add some margin and padding */
+                margin: 10px;
+                padding: 10px;
+                /* Use the hamburger menu icon */
+                background-image: url("hamburger.png");
+                background-size: cover;
+                /* Define the width and height of the hamburger menu */
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Show the navigation bar when the hamburger menu is clicked */
+            .hamburger.active + nav {
+                display: flex;
+                /* Make the navigation bar vertical */
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Define the header element -->
+    <header>
+        <!-- Define the title element -->
+        <h1>Dreamcore Showcase</h1>
+        <!-- Define the owner element -->
+        <h2>Alice</h2>
+        <!-- Define the avatar element -->
+        <img src="alice.jpg" alt="Alice's avatar">
+        <!-- Define the hamburger menu element -->
+        <div class="hamburger"></div>
+        <!-- Define the navigation bar element -->
+        <nav>
+            <!-- Define the list element -->
+            <ul>
+                <!-- Define the list item and link elements -->
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Define the main section element -->
+    <main>
+        <!-- Define the introduction element -->
+        <p>Hi, I'm Alice, a web developer and a dreamcore enthusiast. I love creating websites that are colorful, glitchy, and psychedelic. I'm skilled in HTML, CSS, and JavaScript, and I'm interested in learning more about web design and animation. My goal is to make the web a more fun and creative place.</p>
+        <!-- Define the background video element -->
+        <video src="rainbow.mp4" alt="Rainbow background video"></video>
+        <!-- Define the panel element -->
+        <div>
+            <!-- Define the content of the panel element -->
+            <h3>Welcome to my showcase!</h3>
+            <p>Here you can see some of my projects that I made using HTML, CSS, and JavaScript. I hope you like them and get inspired by them.</p>
+            <p>To see more of my work, you can visit my GitHub profile or follow me on Twitter and LinkedIn. You can also contact me if you have any questions or feedback.</p>
+            <p>Thank you for visiting my showcase and have a great day!</p>
+        </div>
+    </main>
+    <!-- Define the footer element -->
+    <footer>
+        <!-- Define the social media links element -->
+        <div class="social">
+            <!-- Define the social media icons and links elements -->
+            <a href="https://github.com/alice"><img src="github.png" alt="GitHub icon"></a>
+            <a href="https://twitter.com/alice"><img src="twitter.png" alt="Twitter icon"></a>
+            <a href="https://linkedin.com/in/alice"><img src="linkedin.png" alt="LinkedIn icon"></a>
+        </div>
+        <!-- Define the disclaimer element -->
+        <p class="disclaimer">This website is a creative project and not a professional portfolio.</p>
+    </footer>
+    <!-- Define the script for the webpage using JavaScript -->
+    <script>
+        // Get the hamburger menu element
+        var hamburger = document.querySelector(".hamburger");
+        // Get the navigation bar element
+        var nav = document.querySelector("nav");
+        // Get the introduction element
+        var intro = document.querySelector("p");
+        // Get the panel element
+        var panel = document.querySelector("div");
 
-<!-- Navigation Bar -->
-<div class="navbar">
-  <a href="#home" class="nav-link">Home</a>
-  <a href="#projects" class="nav-link">Projects</a>
-  <a href="#about" class="nav-link">About</a>
-  <a href="#contact" class="nav-link">Contact</a>
-</div>
+        // Add a click event listener to the hamburger menu element
+        hamburger.addEventListener("click", function() {
+            // Toggle the active class on the hamburger menu element
+            hamburger.classList.toggle("active");
+        });
 
-<!-- Project Previews -->
-<div id="projects" class="project-carousel">
-  <!-- Add project cards here -->
-  Nothing yet
-</div>
-
-<!-- Ethereal Background -->
-<div class="ethereal-bg parallax"></div>
-
-<!-- About Section -->
-<div id="about" class="about parallax">
-  <div class="about-content">
-    <!-- Add bio and photo here -->
-    Me
-  </div>
-</div>
-
-<!-- Contact Form -->
-<div id="contact" class="contact-form">
-  <!-- Add form fields here -->
-</div>
-
-<!-- Floating Action Button -->
-<div class="fab">+</div>
-
-<!-- Footer -->
-<div class="footer">
-  <!-- Add social media icons here -->
-</div>
-
+        // Add a scroll event listener to the window object
+        window.addEventListener("scroll", function() {
+            // Get the scroll position of the window object
+            var scroll = window.scrollY;
+            // Get the height of the header element
+            var headerHeight = document.querySelector("header").offsetHeight;
+            // Check if the scroll position is greater than the header height
+            if (scroll > headerHeight) {
+                // Add the visible class to the introduction element
+                intro.classList.add("visible");
+            }
+            // Check if the scroll position is greater than twice the header height
+            if (scroll > headerHeight * 2) {
+                // Add the visible class to the panel element
+                panel.classList.add("visible");
+            }
+        });
+    </script>
 </body>
 </html>
